@@ -12,7 +12,7 @@ function App() {
       <main>
         <BadgeMaker />
       </main>
-    </div>
+      </div>
   )
 }
 

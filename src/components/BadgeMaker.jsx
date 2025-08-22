@@ -7,7 +7,6 @@ const BadgeMaker = () => {
   const [backgroundColor, setBackgroundColor] = useState('#4CAF50')
   const [text, setText] = useState('徽章文字')
   const [textColor, setTextColor] = useState('#FFFFFF')
-  const [iconSize, setIconSize] = useState(20)
   const [selectedPreset, setSelectedPreset] = useState('custom')
   const badgeRef = useRef(null)
 
@@ -49,18 +48,42 @@ const BadgeMaker = () => {
   const exportBadge = async () => {
     if (badgeRef.current) {
       try {
-        const canvas = await html2canvas(badgeRef.current, {
-          backgroundColor: null, // 透明背景
+        // 创建一个临时的克隆元素，保持徽章本身的背景颜色
+        const clone = badgeRef.current.cloneNode(true)
+        clone.style.position = 'absolute'
+        clone.style.left = '-9999px'
+        clone.style.top = '-9999px'
+        // 不设置backgroundColor为transparent，保持徽章本身的背景色
+        document.body.appendChild(clone)
+
+        const canvas = await html2canvas(clone, {
+          backgroundColor: null, // 设置为null，让徽章外部的区域透明
           scale: 2, // 提高导出质量
           useCORS: true,
-          allowTaint: true
+          allowTaint: true,
+          logging: false,
+          width: clone.offsetWidth,
+          height: clone.offsetHeight
         })
         
-        // 创建下载链接
+        // 移除临时元素
+        document.body.removeChild(clone)
+        
+        // 创建下载链接 - 使用PNG格式以保持透明度
         const link = document.createElement('a')
-        link.download = `badge-${text}.jpg`
-        link.href = canvas.toDataURL('image/jpeg', 0.9)
-        link.click()
+        link.download = `badge-${text}.png`
+        
+        // 将canvas转换为PNG格式的blob
+        canvas.toBlob((blob) => {
+          if (blob) {
+            const url = URL.createObjectURL(blob)
+            link.href = url
+            link.click()
+            // 清理URL对象
+            URL.revokeObjectURL(url)
+          }
+        }, 'image/png')
+        
       } catch (error) {
         console.error('导出失败:', error)
         alert('导出失败，请重试')
@@ -134,20 +157,8 @@ const BadgeMaker = () => {
           />
         </div>
 
-        <div className="control-group">
-          <label>图标大小: {iconSize}px</label>
-          <input
-            type="range"
-            min="10"
-            max="40"
-            value={iconSize}
-            onChange={(e) => setIconSize(parseInt(e.target.value))}
-            className="range-input"
-          />
-        </div>
-
         <button onClick={exportBadge} className="export-btn">
-          导出徽章
+          导出徽章 (PNG)
         </button>
       </div>
 
@@ -163,12 +174,16 @@ const BadgeMaker = () => {
             }}
           >
             {iconImage && (
-              <img
-                src={iconImage}
-                alt="图标"
-                className="badge-icon"
-                style={{ width: `${iconSize}px`, height: `${iconSize}px` }}
-              />
+              <div 
+                className="badge-icon-container"
+                style={{
+                  backgroundImage: `url(${iconImage})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
+                }}
+              >
+              </div>
             )}
             <span className="badge-text">{text}</span>
           </div>
