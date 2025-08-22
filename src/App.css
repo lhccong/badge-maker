@@ -1,10 +1,10 @@
 .App {
-  min-height: 100vh;
-  width: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 1rem 0;
+  height: 100vh;
+  background: linear-gradient(135deg, rgb(255, 200, 150) 0%, rgb(255, 150, 120) 100%);
+  padding: 0;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
+  display: flex;
   flex-direction: column;
 }
 
@@ -16,24 +16,25 @@
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+    radial-gradient(circle at 20% 80%, rgba(255, 200, 150, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 150, 120, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255, 220, 180, 0.2) 0%, transparent 50%);
   pointer-events: none;
 }
 
 .App-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   color: white;
   position: relative;
   z-index: 1;
   flex-shrink: 0;
+  padding: 0.5rem 0;
 }
 
 .App-header h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  margin-bottom: 0.25rem;
   font-weight: 800;
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   background: linear-gradient(45deg, #fff, #f0f0f0);
@@ -44,7 +45,7 @@
 }
 
 .App-header p {
-  font-size: 1.2rem;
+  font-size: 1rem;
   opacity: 0.95;
   margin: 0;
   font-weight: 300;
@@ -53,38 +54,51 @@
 
 main {
   flex: 1;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 1rem;
+  width: 100%;
+  padding: 0;
+  margin: 0;
   position: relative;
   z-index: 1;
-  width: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 /* 全局样式重置 */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-html {
-  height: 100%;
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
 }
 
 #root {
-  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 /* 滚动条样式 */
@@ -98,30 +112,32 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, rgb(255, 200, 150), rgb(255, 150, 120));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #5a6fd8, #6a4190);
+  background: linear-gradient(135deg, rgb(255, 150, 120), rgb(245, 130, 100));
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
   .App {
-    padding: 0.5rem 0;
+    padding: 0.25rem 0;
   }
   
   .App-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
+    padding: 0.25rem 0;
   }
   
   .App-header h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
   }
   
   .App-header p {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   
   main {
@@ -135,6 +151,6 @@ html {
   }
   
   .App-header p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 }
