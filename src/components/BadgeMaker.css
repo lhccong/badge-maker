@@ -1,0 +1,345 @@
+.badge-maker {
+  display: flex;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+  min-height: calc(100vh - 200px);
+  align-items: stretch;
+  width: 100%;
+}
+
+.controls {
+  flex: 1;
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 500px;
+}
+
+.control-group {
+  margin-bottom: 2rem;
+}
+
+.control-group label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.95rem;
+}
+
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.preset-btn {
+  padding: 0.75rem 0.5rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #ecf0f1;
+  color: #2c3e50;
+  text-align: center;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preset-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.preset-btn.active {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  transform: translateY(-2px);
+}
+
+.preset-btn:not(.active) {
+  background: #ecf0f1;
+  color: #2c3e50;
+}
+
+.file-input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px dashed #3498db;
+  border-radius: 12px;
+  background: #f8f9fa;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.file-input:hover {
+  border-color: #2980b9;
+  background: #ecf0f1;
+  transform: translateY(-2px);
+}
+
+.color-input {
+  width: 80px;
+  height: 50px;
+  border: 3px solid #ecf0f1;
+  border-radius: 12px;
+  cursor: pointer;
+  background: none;
+  transition: transform 0.2s ease;
+}
+
+.color-input:hover {
+  transform: scale(1.05);
+}
+
+.text-input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #ecf0f1;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: #3498db;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.range-input {
+  width: 100%;
+  margin-top: 0.75rem;
+  height: 6px;
+  border-radius: 3px;
+  background: #ecf0f1;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3498db;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.range-input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3498db;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.export-btn {
+  width: 100%;
+  padding: 1.2rem;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.export-btn:hover {
+  background: linear-gradient(135deg, #2980b9, #1f5f8b);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+
+.export-btn:active {
+  transform: translateY(0);
+}
+
+.preview {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-height: calc(100vh - 200px);
+  width: 100%;
+}
+
+.preview h3 {
+  margin-bottom: 2rem;
+  color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.badge-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  padding: 3rem;
+  background: 
+    linear-gradient(45deg, #f8f9fa 25%, transparent 25%), 
+    linear-gradient(-45deg, #f8f9fa 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #f8f9fa 75%), 
+    linear-gradient(-45deg, transparent 75%, #f8f9fa 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  border-radius: 16px;
+  border: 2px solid #ecf0f1;
+  position: relative;
+  min-height: 300px;
+}
+
+.badge-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  z-index: 1;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+}
+
+.badge-icon {
+  object-fit: contain;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.badge-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+  .badge-maker {
+    max-width: 100%;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .badge-maker {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1.5rem;
+    min-height: auto;
+  }
+  
+  .controls {
+    order: 2;
+    padding: 1.5rem;
+    min-height: auto;
+    max-width: none;
+  }
+  
+  .preview {
+    order: 1;
+    padding: 1.5rem;
+    min-height: 400px;
+  }
+  
+  .badge-container {
+    min-height: 200px;
+    padding: 2rem;
+  }
+  
+  .preview h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .preset-grid {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 0.5rem;
+  }
+  
+  .preset-btn {
+    font-size: 0.8rem;
+    padding: 0.6rem 0.4rem;
+    min-height: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .badge-maker {
+    padding: 0.5rem;
+  }
+  
+  .controls,
+  .preview {
+    padding: 1rem;
+  }
+  
+  .badge {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+  
+  .preset-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .badge-container {
+    padding: 1.5rem;
+  }
+} 
