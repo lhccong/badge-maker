@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>徽章生成器</h1>
+        <h1>摸鱼🌟徽章生成器</h1>
         <p>创建你的专属徽章</p>
       </header>
       <main>
